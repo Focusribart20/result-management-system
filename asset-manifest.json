@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/result-management-system/static/css/main.9a6d1f18.css",
+    "main.js": "/result-management-system/static/js/main.d94d9677.js",
+    "index.html": "/result-management-system/index.html",
+    "main.9a6d1f18.css.map": "/result-management-system/static/css/main.9a6d1f18.css.map",
+    "main.d94d9677.js.map": "/result-management-system/static/js/main.d94d9677.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a6d1f18.css",
+    "static/js/main.d94d9677.js"
+  ]
+}
