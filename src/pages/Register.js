@@ -55,7 +55,7 @@ function Register() {
             last_name: lastName,
             email,
             password,
-            user_role: userRole
+            userRole: userRole
         })
         setIsSubmitting(true);
     
@@ -70,7 +70,7 @@ function Register() {
                     last_name: lastName,
                     email,
                     password,
-                    user_role: userRole
+                    userRole: userRole
                 })
             });
     
