@@ -16,38 +16,6 @@ function Register() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
-    // const registerAction = async (e) => {
-    //     e.preventDefault();
-    //     console.log({
-    //         first_name: firstName,
-    //         last_name: lastName,
-    //         email,
-    //         password,
-    //         user_role: userRole
-    //     })
-    //     setIsSubmitting(true);
-    //     try {
-    //         await axios.post('https://rms-api-hxn76.ondigitalocean.app/api/v1/user/register', {
-    //             first_name: firstName,
-    //             last_name: lastName,
-    //             email,
-    //             password,
-    //             user_role: userRole
-    //         });
-    //         setIsSubmitting(false);
-    //         setSuccess(true);
-    //     } catch (error) {
-    //         setIsSubmitting(false);
-    //         if (error.response && error.response.data && error.response.data.errors) {
-    //             setValidationErrors(error.response.data.errors);
-    //         } else {
-    //             setError('Registration failed. Please try again later.');
-    //         }
-    //     }
-    // };
-
-
-
     const registerAction = async (e) => {
         e.preventDefault();
         console.log({
@@ -55,36 +23,68 @@ function Register() {
             last_name: lastName,
             email,
             password,
-            userRole: userRole
+            user_role: userRole
         })
         setIsSubmitting(true);
-    
         try {
-            const response = await fetch('localhost:8080/api/v1/user/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    first_name: firstName,
-                    last_name: lastName,
-                    email,
-                    password,
-                    userRole: userRole
-                })
+            await axios.post('https://rms-api-hxn76.ondigitalocean.app/api/v1/user/register', {
+                first_name: firstName,
+                last_name: lastName,
+                email,
+                password,
+                user_role: userRole
             });
-    
-            if (!response.ok) {
-                throw new Error('Registration failed');
-            }
-    
             setIsSubmitting(false);
             setSuccess(true);
         } catch (error) {
             setIsSubmitting(false);
-            setError('Registration failed. Please try again later.');
+            if (error.response && error.response.data && error.response.data.errors) {
+                setValidationErrors(error.response.data.errors);
+            } else {
+                setError('Registration failed. Please try again later.');
+            }
         }
     };
+
+
+
+    // const registerAction = async (e) => {
+    //     e.preventDefault();
+    //     console.log({
+    //         first_name: firstName,
+    //         last_name: lastName,
+    //         email,
+    //         password,
+    //         userRole: userRole
+    //     })
+    //     setIsSubmitting(true);
+    
+    //     try {
+    //         const response = await fetch('localhost:8080/api/v1/user/register', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 first_name: firstName,
+    //                 last_name: lastName,
+    //                 email,
+    //                 password,
+    //                 userRole: userRole
+    //             })
+    //         });
+    
+    //         if (!response.ok) {
+    //             throw new Error('Registration failed');
+    //         }
+    
+    //         setIsSubmitting(false);
+    //         setSuccess(true);
+    //     } catch (error) {
+    //         setIsSubmitting(false);
+    //         setError('Registration failed. Please try again later.');
+    //     }
+    // };
     
 
 
