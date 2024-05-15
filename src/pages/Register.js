@@ -23,16 +23,16 @@ function Register() {
             last_name: lastName,
             email,
             password,
-            user_role: userRole
+            userRole: userRole
         })
         setIsSubmitting(true);
         try {
-            await axios.post('https://rms-api-hxn76.ondigitalocean.app/api/v1/user/register', {
+            await axios.post(process.env.API_URL, {
                 first_name: firstName,
                 last_name: lastName,
                 email,
                 password,
-                user_role: userRole
+                userRole: userRole
             });
             setIsSubmitting(false);
             setSuccess(true);
