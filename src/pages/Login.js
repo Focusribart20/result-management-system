@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 
-function Login() {
+function Login({ setUser }) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,10 +19,11 @@ function Login() {
             password,
         };
         axios.post('https://rms-api-hxn76.ondigitalocean.app/api/v1/user/login', payload)
-            .then(() => {
+            .then((response) => {
                 setIsSubmitting(false);
-                // Optionally, you can perform any necessary actions upon successful login.
-                // For example, you can navigate to the dashboard or update state.
+                const user = response.data; // Adjust this according to your API response structure
+                setUser(user);
+                localStorage.setItem('user', JSON.stringify(user));
                 navigate('/dashboard');
             })
             .catch((error) => {

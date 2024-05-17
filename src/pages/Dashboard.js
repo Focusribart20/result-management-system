@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Layout from '../components/Layout';
+import OverlayNav from '../components/OverlayNav'; // Import the OverlayNav component
 
 function Dashboard() {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        getUser();
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            setUser(JSON.parse(userData));
+        }
     }, []);
-
-    const getUser = () => {
-        axios.get('https://rms-api-hxn76.ondigitalocean.app/api/v1/user')
-            .then((response) => {
-                setUser(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
 
     return (
         <Layout>
@@ -28,9 +21,10 @@ function Dashboard() {
                             <a className="navbar-brand" href="#">
                                 Dashboard
                             </a>
+                            <OverlayNav /> {/* Add the OverlayNav component here */}
                         </div>
                     </nav>
-                    <h2 className="text-center mt-5">Welcome, {user.name || 'User'}!</h2>
+                    <h2 className="text-center mt-5">Welcome, {user.first_name || 'User'}!</h2>
                 </div>
             </div>
         </Layout>

@@ -41,6 +41,8 @@ function Register() {
             if (error.response && error.response.data && error.response.data.errors) {
                 setValidationErrors(error.response.data.errors);
             } else {
+                console.log(error.message);
+                console.log(error);
                 setError('Registration failed. Please try again later.');
             }
         }
